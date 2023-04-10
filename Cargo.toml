@@ -1,0 +1,14 @@
+[package]
+name = "axum-query-extractor"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait = "0.1"
+axum = { version = "0.6", default-features = false }
+serde = { version = "1.0", default-features = false }
+serde_qs = "0.12"
+thiserror = "1.0"
+urlencoding = "2.1"
