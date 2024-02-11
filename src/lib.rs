@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 
 use axum::{
-    body,
+    body::Body,
     extract::FromRequestParts,
     http::{request::Parts, StatusCode},
     response::{IntoResponse, Response},
@@ -18,7 +18,7 @@ impl IntoResponse for QueryRejection {
     fn into_response(self) -> axum::response::Response {
         Response::builder()
             .status(StatusCode::BAD_REQUEST)
-            .body(body::boxed(self.to_string()))
+            .body(Body::from(self.to_string()))
             .unwrap()
     }
 }
