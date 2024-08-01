@@ -9,6 +9,6 @@ edition = "2021"
 async-trait = "0.1"
 axum = { version = "0.7", default-features = false }
 serde = { version = "1.0", default-features = false }
-serde_qs = "0.12"
+serde_qs = "0.13"
 thiserror = "1.0"
 urlencoding = "2.1"
