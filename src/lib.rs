@@ -1,4 +1,7 @@
-use std::borrow::Cow;
+use std::{
+    borrow::Cow,
+    ops::{Deref, DerefMut},
+};
 
 use axum::{
     body::Body,
@@ -24,6 +27,20 @@ impl IntoResponse for QueryRejection {
 }
 
 pub struct Query<T>(pub T);
+
+impl<T> Deref for Query<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl<T> DerefMut for Query<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
 
 impl<T> TryFrom<&str> for Query<T>
 where
