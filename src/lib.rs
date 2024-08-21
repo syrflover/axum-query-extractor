@@ -1,5 +1,6 @@
 use std::{
     borrow::Cow,
+    fmt::Debug,
     ops::{Deref, DerefMut},
 };
 
@@ -39,6 +40,26 @@ impl<T> Deref for Query<T> {
 impl<T> DerefMut for Query<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.0
+    }
+}
+
+impl<T: Debug> Debug for Query<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_tuple("Query").field(&self.0).finish()
+    }
+}
+
+impl<T: Clone> Clone for Query<T> {
+    fn clone(&self) -> Self {
+        Self(self.0.clone())
+    }
+}
+
+impl<T: Copy> Copy for Query<T> {}
+
+impl<T: Default> Default for Query<T> {
+    fn default() -> Self {
+        Self(T::default())
     }
 }
 
