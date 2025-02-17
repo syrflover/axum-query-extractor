@@ -75,7 +75,7 @@ where
     }
 }
 
-impl<'a, T> TryFrom<Cow<'a, str>> for Query<T>
+impl<T> TryFrom<Cow<'_, str>> for Query<T>
 where
     T: DeserializeOwned,
 {
@@ -89,7 +89,6 @@ where
     }
 }
 
-#[async_trait::async_trait]
 impl<T, S> FromRequestParts<S> for Query<T>
 where
     T: DeserializeOwned,
